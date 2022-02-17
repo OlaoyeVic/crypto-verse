@@ -12,7 +12,7 @@ const Homepage = () => {
     // console.log(data)
     const globalStats = data?.data?.stats
 
-    if (isFetching) return <p>Loading</p>
+    if (isFetching) return <p>Loading ...</p>
     return (
         <>
             <Title level={2} className='heading'>Global Crypto Stats</Title>
@@ -35,9 +35,9 @@ const Homepage = () => {
             </Row>
             <div className='home-heading-container'>
                 <Title level={2} className="home-title">Top 10 Cryptocurrencies in the world</Title>
-                <Title level={3} className="show-more"><Link to="/cryptocurrency">Show More</Link></Title>
+                <Title level={3} className="show-more"><Link to="/crypto/:coinId">Show More</Link></Title>
             </div>
-            <CryptoCurrencies />
+            <CryptoCurrencies simplified />
             <div className='home-heading-container'>
                 <Title level={2} className="home-title">Latest Crypto News</Title>
                 <Title level={3} className="show-more"><Link to="/news">Show More</Link></Title>
