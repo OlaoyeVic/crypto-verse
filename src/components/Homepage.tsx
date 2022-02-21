@@ -9,7 +9,7 @@ const { Title } = Typography
 
 const Homepage = () => {
     const { data, isFetching }: any = useGetCryptosQuery(10)
-    // console.log(data)
+    console.log(data)
     const globalStats = data?.data?.stats
 
     if (isFetching) return <p>Loading ...</p>
@@ -18,31 +18,31 @@ const Homepage = () => {
             <Title level={2} className='heading'>Global Crypto Stats</Title>
             <Row>
                 <Col span={12}>
-                    <Statistic title="Total Cryptocurrencies" value={globalStats.total} />
+                    <Statistic title="Total Cryptocurrencies" value={globalStats?.total} />
                 </Col>
                 <Col span={12}>
-                    <Statistic title="Total Exchanges" value={globalStats.totalExchanges} />
+                    <Statistic title="Total Exchanges" value={globalStats?.totalExchanges} />
                 </Col>
                 <Col span={12}>
-                    <Statistic title="Total Marketcap" value={globalStats.totalMarketCap} />
+                    <Statistic title="Total Marketcap" value={globalStats?.totalMarketCap} />
                 </Col>
                 <Col span={12}>
-                    <Statistic title="Total 24hrs volume" value={globalStats.total24hVolume} />
+                    <Statistic title="Total 24hrs volume" value={globalStats?.total24hVolume} />
                 </Col>
                 <Col span={12}>
-                    <Statistic title="Total Market" value={globalStats.totalMarkets} />
+                    <Statistic title="Total Market" value={globalStats?.totalMarkets} />
                 </Col>
             </Row>
             <div className='home-heading-container'>
                 <Title level={2} className="home-title">Top 10 Cryptocurrencies in the world</Title>
-                <Title level={3} className="show-more"><Link to="/crypto/:coinId">Show More</Link></Title>
+                <Title level={3} className="show-more"><Link to="/cryptocurrencies">Show More</Link></Title>
             </div>
             <CryptoCurrencies simplified />
             <div className='home-heading-container'>
                 <Title level={2} className="home-title">Latest Crypto News</Title>
                 <Title level={3} className="show-more"><Link to="/news">Show More</Link></Title>
             </div>
-            <News />
+            <News simplified />
         </>
     )
 }

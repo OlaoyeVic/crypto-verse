@@ -7,12 +7,11 @@ import { useGetCryptosQuery } from '../services/cryptoAPI'
 const CryptoCurrencies = ({ simplified }: any) => {
     const count = simplified ? 10 : 100
     const { data: cryptosList, isFetching }: any = useGetCryptosQuery(count)
-    const [cryptos, setCryptos] = React.useState(cryptosList?.data?.coins)
-    console.log(cryptos)
+    const [cryptos, setCryptos] = React.useState([])
+    // console.log(cryptos)
     const [searchTerm, setSearchTerm] = React.useState('')
 
     useEffect(() => {
-        // setCryptos(cryptosList?.data?.coins)
         const filteredData = cryptosList?.data?.coins.filter((coin: any) => coin.name.toLowerCase().includes(searchTerm.toLowerCase()))
         setCryptos(filteredData)
     }, [cryptosList, searchTerm])
@@ -26,7 +25,7 @@ const CryptoCurrencies = ({ simplified }: any) => {
                 </div>
             )}
             <Row gutter={[32, 32]} className="crypto-card-container">
-                {cryptos.map((currency: any) => (
+                {cryptos?.map((currency: any) => (
                     <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
                         <Link to={`/crypto/${currency.uuid}`}>
                             <Card
