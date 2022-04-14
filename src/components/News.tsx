@@ -9,14 +9,15 @@ const { Option } = Select
 const demoImage = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News'
 
 const News = ({ simplified }: any) => {
-    // const { data: cryptoNews } = useGetCryptoNewsQuery({
-    //     newsCategory: 'CryptoCurrency', Count: simplified ? 10 : 100
-    // })
-    // console.log(cryptoNews)
+    const { data: cryptoNews } = useGetCryptoNewsQuery({
+        newsCategory: 'CryptoCurrency', Count: simplified ? 10 : 100
+    })
+    console.log(cryptoNews)
     // if (!cryptoNews?.value) return <p>Loading...</p>
+    if (!cryptoNews) return <p>agba loaderrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
     return (
         <Row gutter={[24, 24]}>
-            {/* {cryptoNews?.value?.map((news: any, i: any) => (
+            {cryptoNews?.value?.map((news: any, i: any) => (
                 <Col xs={24} sm={12} lg={8} key={i}>
                     <Card hoverable className="news-card">
                         <a href={news.url} target="_blank" rel="noreferrer">
@@ -37,7 +38,7 @@ const News = ({ simplified }: any) => {
                         </a>
                     </Card>
                 </Col>
-            ))} */}
+            ))}
         </Row>
     )
 }

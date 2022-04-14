@@ -16,7 +16,7 @@ const CryptoCurrencies = ({ simplified }: any) => {
         setCryptos(filteredData)
     }, [cryptosList, searchTerm])
 
-    if (isFetching) return <p>Loading ...</p>
+    // if (isFetching) return <p>Loading ...</p>
     return (
         <div>
             {!simplified && (
