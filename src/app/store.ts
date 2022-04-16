@@ -5,6 +5,6 @@ import { cryptoNewsApi } from '../services/cryptoNewsApi'
 export default configureStore({
     reducer: {
         [cryptoAPI.reducerPath]: cryptoAPI.reducer,
-        [cryptoAPI.reducerPath]: cryptoNewsApi.reducer
+        [cryptoNewsApi.reducerPath]: cryptoNewsApi.reducer,
     }
 })
