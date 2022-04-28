@@ -28,10 +28,10 @@ const News = ({ simplified }: any) => {
                         placeholder='select a crypto'
                         optionFilterProp='children'
                         onChange={(value) => console.log(value)}
-                    // filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                    // filterOption={(input, option) => option!.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                     >
                         <Option value='Cryptocurrency'>Cryptocurrency</Option>
-                        {data?.data?.coins.map((coin: { name: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined }) => <Option value={coin.name}>{coin.name}</Option>)}
+                        {data?.data?.coins.map((coin: any) => <Option value={coin.name}>{coin.name}</Option>)}
                     </Select>
                 </Col>
             )}
