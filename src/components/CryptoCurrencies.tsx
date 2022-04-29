@@ -8,7 +8,7 @@ const CryptoCurrencies = ({ simplified }: any) => {
     const count = simplified ? 10 : 100
     const { data: cryptosList, isFetching }: any = useGetCryptosQuery(count)
     const [cryptos, setCryptos] = React.useState([])
-    // console.log(cryptos)
+    console.log(cryptos)
     const [searchTerm, setSearchTerm] = React.useState('')
 
     useEffect(() => {
@@ -26,11 +26,12 @@ const CryptoCurrencies = ({ simplified }: any) => {
             )}
             <Row gutter={[32, 32]} className="crypto-card-container">
                 {cryptos?.map((currency: any) => (
-                    <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
-                        <Link to={`/crypto/${currency.uuid}`}>
+                    <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.uuid}>
+                        <Link to={`/crypto/${currency.uuid}`} key={currency.uuid}>
                             <Card
                                 title={`${currency.rank}. ${currency.name}`}
-                                extra={<img className="crypto-image" src={currency.iconurl} />}
+                                extra={<img className="crypto-image"
+                                    src={currency.iconUrl} />}
                                 hoverable>
                                 <p>Price: {millify(currency.price)}</p>
                                 <p>MarketCap: {millify(currency.marketCap)}</p>
