@@ -2,16 +2,7 @@ import React from 'react'
 import { Col, Row, Typography } from 'antd'
 import { Line } from 'react-chartjs-2'
 import { ChartOptions } from 'chart.js'
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js'
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, } from 'chart.js'
 
 ChartJS.register(
     CategoryScale,
@@ -24,14 +15,21 @@ ChartJS.register(
 )
 
 
-const LineChart = ({ coinHistory, currentPrice, coinName }: string | any) => {
-    const coinPrice = []
-    const coinTimeStamp = []
+const LineChart = ({ coinHistory, currentPrice, coinName }: any) => {
+    let coinPrice = []
+    let coinTimeStamp = []
 
-    for (let i = 0; i > coinHistory?.data?.history?.length; i++) {
+    for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
+        if (!coinPrice || !coinTimeStamp) {
+            coinPrice = []
+            coinTimeStamp = []
+        }
         coinPrice.push(coinHistory.data.history[i].price)
-        coinTimeStamp.push(new Date(coinHistory.data.history[i].timeStamp).toLocaleDateString())
+        coinTimeStamp.push(new Date(coinHistory.data.history[i].timestamp).toLocaleDateString())
     }
+
+    console.log(coinPrice)
+    console.log(coinTimeStamp)
 
     const data = {
         labels: coinTimeStamp,
@@ -48,13 +46,11 @@ const LineChart = ({ coinHistory, currentPrice, coinName }: string | any) => {
 
     const options: ChartOptions<any> = {
         scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        beginAtZero: true,
-                    }
+            yAxes: {
+                ticks: {
+                    beginAtZero: true,
                 }
-            ]
+            }
         }
     }
 

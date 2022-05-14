@@ -13,10 +13,11 @@ const { Option } = Select
 
 const CryptoDetails = () => {
     const { coinId } = useParams() as any
-    const [timePeriod, setTimePeriod] = React.useState('7d')
+    const [timeperiod, setTimeperiod] = React.useState('7d')
     const { data, isFetching }: any = useGetCryptoDetailsQuery(coinId)
     console.log(data)
-    const { data: coinHistory } = useGetCryptoDetailsQuery({ coinId, timePeriod })
+    const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod })
+    console.log(coinHistory)
     const cryptoDetails = data?.data?.coin
 
     if (isFetching) return <p>Loading ...</p>
@@ -51,7 +52,7 @@ const CryptoDetails = () => {
                     View value statistics, market cap and supply
                 </p>
             </Col>
-            <Select defaultValue='7d' className='select-timeperiod' placeholder='Select Time Period' onChange={(value) => setTimePeriod(value)}>
+            <Select defaultValue='7d' className='select-timeperiod' placeholder='Select Time Period' onChange={(value) => setTimeperiod(value)}>
                 {time.map((date) => <Option key={date}>{date}</Option>)}
             </Select>
             <LineChart
